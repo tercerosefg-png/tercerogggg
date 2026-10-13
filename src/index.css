@@ -1,0 +1,254 @@
+@import "tailwindcss";
+
+/* Variables de color */
+:root {
+    --linea-azul: #d0e4f5;
+    --margen-rojo: #ffb6c1;
+    --morado: #5a2d9c;
+    --verde-claro: #b0dca2;
+    --texto: #1a1a1a;
+}
+
+body {
+    background-color: #e0e0e0;
+    font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', cursive, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Contenedor principal simulando la hoja del cuaderno */
+.hoja-cuaderno {
+    background-color: #fdfdfd;
+    /* Líneas horizontales */
+    background-image: repeating-linear-gradient(transparent, transparent 24px, var(--linea-azul) 24px, var(--linea-azul) 25px);
+    width: 100%;
+    max-width: 800px;
+    min-height: 1000px;
+    position: relative;
+    padding: 30px 40px 40px 80px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Margen rojo vertical */
+.hoja-cuaderno::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 60px;
+    width: 2px;
+    height: 100%;
+    background-color: var(--margen-rojo);
+}
+
+/* Decoración de la espiral izquierda */
+.espiral {
+    position: absolute;
+    left: 10px;
+    top: 30px;
+    bottom: 30px;
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+.agujero {
+    width: 15px;
+    height: 15px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    box-shadow: inset 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Logotipo Scribé (esquina superior derecha) */
+.logo-scribe {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 12px;
+    color: #a0a0a0;
+    border: 1px solid #a0a0a0;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+}
+
+/* Barra de navegación superior */
+.barra-navegador {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #333;
+    border-bottom: none;
+    padding: 5px 15px;
+    width: 60%;
+    margin-left: auto;
+    border-radius: 10px 10px 0 0;
+    background-color: #f0f0f0;
+}
+.nav-izq, .nav-der {
+    display: flex;
+    gap: 10px;
+}
+.icono-nav {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 3px;
+    user-select: none;
+    transition: background-color 0.2s;
+}
+.icono-nav:hover { background-color: var(--verde-claro); }
+
+/* Título principal y Círculo */
+.seccion-titulo {
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Caja del título "La vi da Salu dable" */
+.caja-titulo {
+    border: 3px solid #333;
+    padding: 15px;
+    width: 65%;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    background-color: var(--verde-claro);
+    box-shadow: 3px 3px 0 #333;
+    transition: transform 0.2s;
+}
+.caja-titulo:hover { transform: scale(1.02); }
+
+/* Círculo "vida saludable" */
+.circulo-vida {
+    position: absolute;
+    left: 0;
+    top: -10px;
+    width: 120px;
+    height: 120px;
+    border: 3px dashed #333;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--verde-claro);
+    cursor: pointer;
+    box-shadow: 3px 3px 0 #333;
+    transition: all 0.3s ease;
+    z-index: 5;
+}
+.circulo-vida:hover { transform: rotate(5deg) scale(1.05); background-color: #9cd18c; }
+.circulo-vida span {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.1;
+    text-align: center;
+}
+.circulo-vida .linea-ondulada {
+    width: 60px;
+    height: 6px;
+    margin-top: 5px;
+    background-image: radial-gradient(circle, transparent 50%, #333 50%);
+    background-size: 10px 10px;
+    background-position: 0 0;
+}
+
+/* Zona Morada */
+.zona-morada {
+    background-color: var(--morado);
+    border: 3px solid #333;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    margin-top: 20px;
+    clip-path: polygon(0 2%, 100% 0, 98% 100%, 2% 98%);
+}
+
+/* Fila de 3 pestañas blancas */
+.fila-pestanas {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+.pestana {
+    background-color: white;
+    border: 2px solid #333;
+    border-radius: 8px;
+    height: 60px;
+    flex: 1;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.2s;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+    user-select: none;
+}
+.pestana:hover { background-color: #f0f0f0; transform: translateY(-2px); }
+.pestana.activa { background-color: var(--verde-claro); box-shadow: inset 2px 2px 5px rgba(0,0,0,0.3); }
+
+/* Cuadro central blanco */
+.cuadro-central {
+    background-color: white;
+    border: 2px solid #333;
+    border-radius: 8px;
+    min-height: 80px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+    transition: background-color 0.3s, opacity 0.15s;
+}
+
+/* Píldora inferior blanca */
+.pildora-inferior {
+    background-color: white;
+    border: 2px solid #333;
+    border-radius: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+    transition: all 0.2s;
+    user-select: none;
+}
+.pildora-inferior:hover { background-color: #ffeaa7; transform: scale(1.02); }
+
+/* Animación de pulso */
+@keyframes pulso {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+.animar { animation: pulso 0.3s ease; }
